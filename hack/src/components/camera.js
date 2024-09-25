@@ -1,25 +1,95 @@
-import React,{useRef,useState} from 'react';
+import React, { useRef, useState } from 'react';
 import { imageData } from '../getData';
 import Webcam from 'react-webcam';
-import Chat from './chat';
+import '../App.css';
+
 const videoConstraints = {
   width: 1280,
   height: 720,
-  facingMode: "user"
+  facingMode: 'user',
 };
 
+export default function ImageUploader() {
+  const [imagePreview, setImagePreview] = useState(null);
+  const [cameraVisible, setCameraVisible] = useState(false);
+  const [newChat, setNewChat] = useState(null);
 
-  export default function Camera(){
-    const webRef=useRef(null);
-    const [newchat,chat] = useState(null);
-    async function showImage(){
-        chat(await imageData(webRef.current.getScreenshot()));
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.src = e.target.result;
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.drawImage(img, 0, 0);
+          const jpgBase64 = canvas.toDataURL('image/jpeg');
+          setImagePreview(jpgBase64);
+          imageData(jpgBase64);
+        };
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removeImage = () => {
+    setImagePreview(null);  
+  };
+
+  const Camera = () => {
+    const webRef = useRef(null);
+
+    const showImage = async () => {
+      const screenshot = webRef.current.getScreenshot();
+      setNewChat(await imageData(screenshot));
     };
-    return(<div>
-            <Webcam ref={webRef} height={720} screenshotFormat="image/jpeg" width={1080}  videoConstraints={videoConstraints} audio={false}/>
-            <button onClick={()=>{showImage();}}>Capture</button>
-            <div className="chat">
-            {newchat}
-            </div>    
-        </div>);
-  }
+
+    return (
+      <div>
+        <Webcam
+          ref={webRef}
+          height={720}
+          screenshotFormat="image/jpeg"
+          width={1080}
+          videoConstraints={videoConstraints}
+          audio={false}
+        />
+        <button onClick={showImage}>Capture</button>
+        <div className="chat">
+          {newChat}
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="image-uploader-container">
+      <input
+        type="file"
+        id="image-input"
+        accept="image/*"
+        onChange={handleImageUpload}
+      />
+
+      {imagePreview && (
+        <div className="image-preview-container">
+          <img src={imagePreview} alt="Selected" className="image-preview" />
+          <button onClick={removeImage}>Remove Image</button> 
+        </div>
+      )}
+
+      {!cameraVisible ? (
+        <button onClick={() => setCameraVisible(true)}>Use Camera</button>
+      ) : (
+        <button onClick={() => setCameraVisible(false)}>Close Camera</button>
+      )}
+
+      {cameraVisible && <Camera />}
+    </div>
+  );
+}
+
