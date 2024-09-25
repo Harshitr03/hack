@@ -4,8 +4,8 @@ import '.././App.css';
 const AnimatedCircle = () => {
   return (
     <div>
-        <div className="circle left">RECYCLE</div>
-        <div className="circle right">RECYCLE</div>
+        <div className="circle left"></div>
+        <div className="circle right"></div>
     </div>
 
 

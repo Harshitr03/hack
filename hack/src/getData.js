@@ -1,5 +1,5 @@
 export async function imageData(baseImg) {
-    const response=await fetch('http://localhost:8080/', {
+    const response = await fetch('http://localhost:8080/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -8,7 +8,8 @@ export async function imageData(baseImg) {
           image: `${baseImg}`
         })
       })
-      console.log(baseImg);
-      const response1 = response.json();
-      console.log(response1);
+      const response1 = await response.json();
+      console.log(response1)
+      return(response1.content);
+      
 }
