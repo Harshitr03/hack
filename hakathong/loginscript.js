@@ -28,7 +28,7 @@ iconClose.addEventListener('click',()=>{
 
 });
 
-/*
+
 function toggleForm() {
     const loginForm = document.getElementById("loginForm");
     const registerForm = document.getElementById("registerForm");
@@ -64,4 +64,3 @@ function handleRegister(event) {
     const password = event.target[2].value;
     alert(`Registering with Email: ${email}, Username: ${username}, and Password: ${password}`);
 }
-*/
