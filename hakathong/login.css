@@ -136,7 +136,7 @@
 {
   transition: transform .18s ease;
   transform:translateX(0);
-  z-index:-1;
+  display:block;
 }
 
 
@@ -144,7 +144,7 @@
 {
   transition: none;
   transform:translateX(-400px);
-  display: hidden;
+  display: none;
   
 }
 
@@ -155,15 +155,15 @@
   position:absolute;
   transition:none;
   transform: translateX(400px);
-  
+  display:none;
 }
 
 .wrapper.active .form-box.register
 {
   transition: transform .18s ease;
   transform:translateX(0);
-  z-index:-1;
-  
+  z-index: -10;  
+  display: block;
 }
 
 
