@@ -1,12 +1,19 @@
 import React from 'react';
 import './App.css';
-import Camera from './components/camera';
-import MMap from './components/map';
+import Navbar from './components/navbar';
+import Hero from './components/home';
+import Footer from './components/footer';
+import Story from './components/story';
+import Main from './components/main'
 function App() {
   return (
     <div className="App">
-      <Camera/>
-      <MMap id={'8ae3d5e74a56b730'}/>
+      {/* <Navbar />
+      <Hero /> */}
+      <Main/>
+      {/* <Story/>
+      <Footer /> */}
+
     </div>
   );
 }
