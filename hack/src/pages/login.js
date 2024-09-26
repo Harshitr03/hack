@@ -31,9 +31,15 @@ const LoginRegister = () => {
         body: JSON.stringify(formData),
       });
 
-      const result = await response.json();
-      console.log(result);
-      // Handle success (e.g., redirect, show message)
+      if (response.ok) {  // Check if the request was successful
+        const result = await response.json();
+        console.log(result);
+        // Redirect to the main page upon success
+        window.location.href = 'http://localhost:3000/main';
+      } else {
+        // Handle non-successful response
+        console.error('Error: ', response.statusText);
+      }
     } catch (error) {
       console.error('Error:', error);
       // Handle error (e.g., show error message)
@@ -48,6 +54,19 @@ const LoginRegister = () => {
           <form onSubmit={handleSubmit}>
             {!isLogin && (
               <div className="input-container">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                value={formData.emailid}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+              
+            )}
+            <div className="input-container">
                 <label htmlFor="username">Username</label>
                 <input
                   type="text"
@@ -57,18 +76,6 @@ const LoginRegister = () => {
                   onChange={handleInputChange}
                   required
                 />
-              </div>
-            )}
-            <div className="input-container">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                placeholder="Enter your email"
-                value={formData.email}
-                onChange={handleInputChange}
-                required
-              />
             </div>
             <div className="input-container">
               <label htmlFor="password">Password</label>
@@ -81,17 +88,7 @@ const LoginRegister = () => {
                 required
               />
             </div>
-            {!isLogin && (
-              <div className="terms-container">
-                <input
-                  type="checkbox"
-                  id="termsAccepted"
-                  checked={formData.termsAccepted}
-                  onChange={handleInputChange}
-                />
-                <label htmlFor="termsAccepted">I agree to the terms & conditions</label>
-              </div>
-            )}
+            
             <button type="submit" className="submit-btn">
               {isLogin ? 'Login' : 'Register'}
             </button>
