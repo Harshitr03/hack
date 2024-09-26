@@ -8,8 +8,9 @@ export default function Main() {
   const[lat,handlelat]=useState(20.5);
   const[lon,handlelon]=useState(78.9); 
   const[chat,setChat]=useState('');
+  const[marker,setMarker]=useState(null)
   const getImage=(a)=>{
-    imageData(a,lat,lon).then(response=>setChat(response.chat.content))
+    imageData(a,lat,lon).then(response=>{setChat(response.chat[0].message.content);setMarker(response.loc.results);})
   }
   var options = {
     enableHighAccuracy: true,
@@ -32,7 +33,7 @@ export default function Main() {
       <div className="App">
         <Camera set={getImage}/>
         <Chat chat={chat}/>
-        <MMap id={'8ae3d5e74a56b730'} lat={lat} lon={lon}/>
+        <MMap id={'8ae3d5e74a56b730'} lat={lat} lon={lon} markers={marker}/>
       </div>
     );
   }
