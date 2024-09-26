@@ -7,7 +7,6 @@ import Story from '.././components/story';
 function Home() {
   return (
     <div className="App">
-      <Navbar />
       <Hero /> 
       <Story/>
       <Footer />

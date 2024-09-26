@@ -9,10 +9,11 @@ import './App.css';
 import Main from './pages/main'
 import Home from './pages/home';
 import Login from './pages/login';
-
+import Navbar from './components/navbar';
 function App() {
   return (
     <div className="App">
+      <Navbar/>
       <Router>
         <Routes>
           <Route exact path="/" element={<Home/>}/>

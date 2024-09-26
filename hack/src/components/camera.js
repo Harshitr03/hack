@@ -55,7 +55,7 @@ export default function ImageUploader({set}) {
           videoConstraints={videoConstraints}
           audio={false}
         />
-        <button onClick={showImage}>Capture</button>
+        <button class="button-40" onClick={showImage}>Capture</button>
 
       </div>
     );
@@ -63,24 +63,34 @@ export default function ImageUploader({set}) {
 
   return (
     <div className="image-uploader-container">
-      <input
+      {/* <input class="button-40"
         type="file"
         id="image-input"
         accept="image/*"
         onChange={handleImageUpload}
-      />
+      /> */}
+
+    <label htmlFor="image-input" className="button-40">Choose File</label>
+    <input
+      type="file"
+      id="image-input"
+      accept="image/*"
+      onChange={handleImageUpload}
+      style={{ display: 'none' }} // Hide the native file input
+    />
+
 
       {imagePreview && (
         <div className="image-preview-container">
-          <img src={imagePreview} alt="Selected" className="image-preview" />
-          <button onClick={removeImage}>Remove Image</button> 
+          <img src={imagePreview} alt="Selected" className="image-preview" /><br></br>
+          <button class="button-40 pusher" onClick={removeImage}>Remove Image</button> 
         </div>
       )}
 
       {!cameraVisible ? (
-        <button onClick={() => setCameraVisible(true)}>Use Camera</button>
+        <button class="button-40" onClick={() => setCameraVisible(true)}>Use Camera</button>
       ) : (
-        <button onClick={() => setCameraVisible(false)}>Close Camera</button>
+        <button class="button-40" onClick={() => setCameraVisible(false)}>Close Camera</button>
       )}
 
       {cameraVisible && <Camera />}
