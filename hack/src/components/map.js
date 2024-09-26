@@ -41,7 +41,7 @@ export default function MMap({id,lat,lon,markers}) {
     }
     return (
         <>
-         <button class="button-40 image-preview-container" onClick={()=>{setmap(true)}}>Map</button>
+         <button className="button-40 image-preview-container" onClick={()=>{setmap(true)}}>Map</button>
         <Mapp/>
         </>
 

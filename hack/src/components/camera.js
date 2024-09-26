@@ -83,14 +83,14 @@ export default function ImageUploader({set}) {
       {imagePreview && (
         <div className="image-preview-container">
           <img src={imagePreview} alt="Selected" className="image-preview" /><br></br>
-          <button class="button-40 pusher" onClick={removeImage}>Remove Image</button> 
+          <button className="button-40 pusher" onClick={removeImage}>Remove Image</button> 
         </div>
       )}
 
       {!cameraVisible ? (
-        <button class="button-40" onClick={() => setCameraVisible(true)}>Use Camera</button>
+        <button className="button-40" onClick={() => setCameraVisible(true)}>Use Camera</button>
       ) : (
-        <button class="button-40" onClick={() => setCameraVisible(false)}>Close Camera</button>
+        <button className="button-40" onClick={() => setCameraVisible(false)}>Close Camera</button>
       )}
 
       {cameraVisible && <Camera />}

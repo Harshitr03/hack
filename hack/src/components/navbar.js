@@ -7,7 +7,7 @@ const Navbar = () => {
       <Logo href="/">RecycleIt</Logo>
       <NavLinks>
         <NavLink href="/">Home</NavLink>
-        <NavLink href="/">Main</NavLink>
+        <NavLink href="/main">Main</NavLink>
         <NavLink href="/login">Login</NavLink>
         <GetStarted href="/get-started">Get Started</GetStarted>
       </NavLinks>
