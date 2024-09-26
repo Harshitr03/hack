@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { imageData } from '../getData';
+// import { set } from '../getData';
 import Webcam from 'react-webcam';
 import '../App.css';
 
@@ -9,11 +9,9 @@ const videoConstraints = {
   facingMode: 'user',
 };
 
-export default function ImageUploader() {
+export default function ImageUploader({set}) {
   const [imagePreview, setImagePreview] = useState(null);
   const [cameraVisible, setCameraVisible] = useState(false);
-  const [newChat, setNewChat] = useState(null);
-
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -29,7 +27,7 @@ export default function ImageUploader() {
           ctx.drawImage(img, 0, 0);
           const jpgBase64 = canvas.toDataURL('image/jpeg');
           setImagePreview(jpgBase64);
-          imageData(jpgBase64);
+          set(jpgBase64);
         };
       };
       reader.readAsDataURL(file);
@@ -45,7 +43,7 @@ export default function ImageUploader() {
 
     const showImage = async () => {
       const screenshot = webRef.current.getScreenshot();
-      setNewChat(await imageData(screenshot));
+      set(screenshot);
     };
 
     return (
@@ -59,9 +57,7 @@ export default function ImageUploader() {
           audio={false}
         />
         <button onClick={showImage}>Capture</button>
-        <div className="chat">
-          {newChat}
-        </div>
+        
       </div>
     );
   };

@@ -1,11 +1,13 @@
-export async function imageData(baseImg) {
+export async function imageData(baseImg,lat,lon) {
     const response = await fetch('http://localhost:8080/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          image: `${baseImg}`
+          image: `${baseImg}`,
+          lat:lat,
+          lon:lon
         })
       })
       const response1 = await response.json();
@@ -13,10 +15,10 @@ export async function imageData(baseImg) {
       return(response1.content); 
 }
 
-export async function mapData(lat,lon) {
-      if(!lat||!lon)
-        return;
-      const response = await fetch(`http://localhost:8080/Map?lat=${lat}&lon=${lon}`)
-      const response1 = await response.json()
-      console.log(response1);
-}
+// export async function mapData(lat,lon) {
+//       if(!lat||!lon)
+//         return;
+//       const response = await fetch(`http://localhost:8080/lat=${lat}&lon=${lon}`)
+//       const response1 = await response.json()
+//       console.log(response1);
+// }
