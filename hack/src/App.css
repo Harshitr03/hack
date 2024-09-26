@@ -228,4 +228,61 @@ body, html {
   text-decoration: underline;
 }
 
+.letstry {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(161, 161, 161, 0.399);
+  font-size: 3em;
+  text-align: center;
+  max-width: 80%;
+
+}
+.letstryCo{
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
   
+}
+.letstryss{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.workers1{
+  padding: 50px 20px;
+  background-color: #000;
+  color: white;
+  text-align: center;
+}
+
+.workers2{
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.workers3{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.workers4{
+  flex: 1;
+  padding: 20px;
+  font-size: 1.2em;
+}
+
+.workers5{
+  flex: 1;
+  max-width: 100%;
+  height: auto;
+}

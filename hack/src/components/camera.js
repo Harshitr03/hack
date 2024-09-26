@@ -55,7 +55,7 @@ export default function ImageUploader({set}) {
           videoConstraints={videoConstraints}
           audio={false}
         />
-        <button class="button-40" onClick={showImage}>Capture</button>
+        <button className="button-40" onClick={showImage}>Capture</button>
 
       </div>
     );
