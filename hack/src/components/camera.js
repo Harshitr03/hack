@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-// import { set } from '../getData';
 import Webcam from 'react-webcam';
 import '../App.css';
 
@@ -57,7 +56,7 @@ export default function ImageUploader({set}) {
           audio={false}
         />
         <button onClick={showImage}>Capture</button>
-        
+
       </div>
     );
   };

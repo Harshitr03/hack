@@ -7,8 +7,10 @@ import {imageData} from "../getData";
 export default function Main() {
   const[lat,handlelat]=useState(20.5);
   const[lon,handlelon]=useState(78.9); 
-  const[image,setImage]=useState(null);
-  const[chat,setChat]=useState(null);
+  const[chat,setChat]=useState('');
+  const getImage=(a)=>{
+    imageData(a,lat,lon).then(response=>setChat(response.chat.content))
+  }
   var options = {
     enableHighAccuracy: true,
     timeout: 5000,
@@ -22,15 +24,14 @@ export default function Main() {
     handlelat(crd.latitude);
     handlelon(crd.longitude);
   }
-  if(image&&lat&&lon)
-    console.log(imageData(image,lat,lon));
+
   function errors(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
   }
     return (
       <div className="App">
-        <Camera set={setImage}/>
-        {/* <Chat chat={chat}/> */}
+        <Camera set={getImage}/>
+        <Chat chat={chat}/>
         <MMap id={'8ae3d5e74a56b730'} lat={lat} lon={lon}/>
       </div>
     );
