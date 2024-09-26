@@ -1,6 +1,6 @@
 import React from 'react';
-import Camera from './camera';
-import MMap from './map';
+import Camera from '../components/camera';
+import MMap from '../components/map';
 export default function Main() {
     return (
       <div className="App">
